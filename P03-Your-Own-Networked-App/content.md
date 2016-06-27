@@ -121,6 +121,12 @@ let parameters = [
 Alamofire.request(.POST, apiToContact, parameters: parameters)
 ```
 
+# Testing APIs
+
+I highly recommend you check out [Postman](https://www.getpostman.com/apps) so you can test your API calls before trying them out in Swift. Postman will allow you to view nicely formatted JSON responses, test out parameters and do pretty much anything you would want to do before even touching code!
+
+See the [Postman documentation](https://www.getpostman.com/docs), specifically [Sending Requests](https://www.getpostman.com/docs/requests) to get started!
+
 # I'm getting an error about Secure Transport!
 
 > App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.
