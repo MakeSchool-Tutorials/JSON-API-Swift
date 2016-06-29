@@ -22,7 +22,7 @@ Open up `ViewController.swift` and take a look at the code provided.
 The code we care most about is this:
 
 ```
-let apiToContact = "https://itunes.apple.com/search"
+let apiToContact = "https://itunes.apple.com/us/rss/topmovies/limit=25/json"
 // This code will call the iTunes top 25 movies endpoint listed above
 Alamofire.request(.GET, apiToContact).validate().responseJSON() { response in
     switch response.result {
