@@ -5,7 +5,9 @@ slug: parsing-json
 
 Just about every app you use involves sending information to or receiving information from the internet.
 
-If you want your app to connect to servers owned by other people, then you are going to have to deal with APIs (Application Program Interfaces) and their responses, which are usually formatted in JSON (JavaScript Object Notation). This sounds like a whole lot of work, but luckily, other programers have written libraries to make our life a whole lot easier!
+If you want your app to connect to servers owned by other people, then you are going to have to deal with *APIs* (Application Program Interfaces). An API just means a standard way for some piece of software to talk to another piece of software. In this case, a way for your app to talk to some server somewhere. For example, you may use an [API for getting weather information](http://openweathermap.org/api), an [API for detecting faces](http://www.faceplusplus.com/api-overview/) or one of [thousands of others](https://market.mashape.com/explore?sort=developers).
+
+Very often, the response you'll get from a server is formatted in *JSON* (JavaScript Object Notation). This sounds like a whole lot of work, but luckily, other programers have written libraries to make our life a whole lot easier!
 
 # Introducing JSON
 
@@ -15,7 +17,38 @@ JSON is a way of representing `Arrays` and `Dictionaries` of values (`String`, `
 
 Let's take a look at some JSON!
 
+## JSON Dictionary
+
+Here's an example of what a dictionary looks like in JSON. The keys must be strings, and are separated from their associated values with a colon `:`.
+
+```
+{
+  "Calories" : 210,
+  "Fat" : 7,
+  "Protein" : 14,
+  "Carbohydrates" : 23
+}
+```
+> [info]
+JSON dictionaries are also sometimes called JSON objects.
+
+## JSON Array
+
+Here's what a JSON array looks like:
+
+```
+[
+	"Isolated Soy Protein",
+	"Tapioca Starch",
+	"Salt",
+	"Sugar"
+]
+```
+
+
 ## Example JSON content
+
+Here's an example JSON response received from `http://api.randomuser.me/` -- a testing API for generating fake user data.
 
 ```
 {
@@ -67,9 +100,7 @@ Let's take a look at some JSON!
 }
 ```
 
-The example above is a response received from `http://api.randomuser.me/` -- a testing API for generating fake user data.
-
-There is a `Dictionary` at the base with two keys: `"results"` and `"info"`. All the stuff we want is in "results" which contains an `Array` of `Dictionaries`. In this case, there is only one `Dictionary` in the `Array`.
+There is a `Dictionary` at the base with two keys: `"results"` and `"info"`. All the stuff we want is in `"results"` which contains an `Array` of `Dictionaries`. In this case, there is only one `Dictionary` in the `Array`.
 
 The dictionary has keys of `"gender"`, `"name"`, `"location"`, `"email"`, `"login"`, and a few more! `"gender"` contains a `String` value of `"female"`, while other keys like `"name"` contain another `Dictionary` with `"title"`, `"first"`, and `"last"` keys. Are you starting to see the pattern?
 
@@ -77,7 +108,7 @@ Now, how can we actually use this data?
 
 # Download the starter project
 
-We've created a starter project for you with the libraries we'll be using all set up.
+We've created a starter project for you with the libraries we'll be using already set up.
 
 > [action]
 >
