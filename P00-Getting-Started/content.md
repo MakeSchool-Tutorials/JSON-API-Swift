@@ -144,7 +144,7 @@ Can you trace that through the JSON above?
 > Save the other necessary values from this `userData` to print the following to the console...
 >
 ```
-<first name> <last name> lives at <street name> in <city>, <state>, <zip code> and is a resident of <country>. If you want to contact them, you can email <title> <first name> at <email address> or call their cell at <cell phone number>.
+<first name> <last name> lives at <street name> in <city>, <state>, <zip code> and is a resident of <country/nationality>. If you want to contact them, you can email <title> <first name> at <email address> or call their cell at <cell phone number>.
 ```
 
 You'll need to pay close attention to the formatting of the JSON data above. Remember, some values are deeper in other dictionaries! We needed to get the `"name"` dictionary before we could access the first name.
