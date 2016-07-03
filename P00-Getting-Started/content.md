@@ -100,7 +100,7 @@ Here's an example JSON response received from `http://api.randomuser.me/` -- a t
 }
 ```
 
-There is a `Dictionary` at the base with two keys: `"results"` and `"info"`. All the stuff we want is in `"results"` which contains an `Array` of `Dictionaries`. In this case, there is only one `Dictionary` in the `Array`.
+There is a `Dictionary` at the base with two keys: `"results"` and `"info"`. All the stuff we want is in `"results"` which contains an array of dictionaries. In this case, there is only one dictionary in the array, because we only requested one random user. If we had requested more random users, there would have been multiple dictionaries (each containing information about a new random user) inside of the results array.
 
 The dictionary has keys of `"gender"`, `"name"`, `"location"`, `"email"`, `"login"`, and a few more! `"gender"` contains a `String` value of `"female"`, while other keys like `"name"` contain another `Dictionary` with `"title"`, `"first"`, and `"last"` keys. Are you starting to see the pattern?
 
@@ -115,39 +115,54 @@ We've created a starter project for you with the libraries we'll be using alread
 1. Download the JSON & APIs starter project [here](https://github.com/MakeSchool-Tutorials/JSON-API-Swift-Starter/archive/master.zip).
 1. Unzip the project and move it to your projects folder.
 1. Go through the necessary steps to get this project on GitHub. Remember to commit often!
+1. Make sure that you open *API-Sandbox.xcworkspace* and not *API-Sandbox.xcodeproj*.
 
 
 # Introducing SwiftyJSON
 
 SwiftyJSON allows us to access this data as if it were regular Swift arrays and dictionaries without having to deal with all sorts of annoying type casting at each level. It still can be messy to navigate JSON data, but SwiftyJSON makes it a lot easier.
 
-In the `Challenges.swift` file you'll see a function named `exerciseOne`. The important part of that for now are these two lines:
+In the `Challenges.swift` file you'll see a function named `exerciseOne`. For now, the most important part is these two lines:
 
 ```
 let userData = JSON(data: jsonData)
 let firstName = userData["results"][0]["name"]["first"].stringValue
 ```
 
-`jsonData` represents the same data shown above. The first line loads the `jsonData` into a `JSON` object while the second line navigates the `JSON` object to get the first name as a string. Do you see what we did there? We navigated by getting:
+`jsonData` holds the same data shown above. The first line loads the `jsonData` into a `JSON` object called `userData`. The second line navigates through the `JSON` object to get the first name as a string. Do you see what we did there? We navigated by getting:
 
-1. The array of dictionaries from the root with the "results" key
+1. The array of dictionaries from the root with the `"results"` key
 1. The first dictionary of that array
-1. The dictionary stored with the "name" key
-1. The value stored with the "first" first key
+1. The dictionary stored with the `"name"` key
+1. The value in that dictionary for the `"first"` key
 1. Retrieved the value as a string with `.stringValue`
 
 Can you trace that through the JSON above?
 
+> [info]
+> The line 
+> ```
+>	let firstName = userData["results"][0]["name"]["first"].stringValue
+> ```
+> could have also been written like this:
+> 
+```
+let results = userData["results"]
+let firstRandomUser = results[0]
+let nameDictionary = firstRandomUser["name"]
+let firstName = nameDictionary["first"].stringValue
+```
+
 # Your turn!
 
 > [challenge]
-> Save the other necessary values from this `userData` to print the following to the console...
+> Save the other necessary values from this `userData`, and use them to print the following to the console:
 >
 ```
-<first name> <last name> lives at <street name> in <city>, <state>, <zip code> and is a resident of <country>. If you want to contact them, you can email <title> <first name> at <email address> or call their cell at <cell phone number>.
+<first name> <last name> lives at <street name> in <city>, <state>, <zip code>. If you want to contact <title>. <last name>, you can email <email address> or call at <cell phone number>.
 ```
 
 You'll need to pay close attention to the formatting of the JSON data above. Remember, some values are deeper in other dictionaries! We needed to get the `"name"` dictionary before we could access the first name.
 
 > [info]
-> Pay attention to the final values. Most are strings, but some do not have double quotes around them... You can access `Int` values with `.intValue`, `Double` values with `.doubleValue`, `String` values with `.stringValue`, etc.
+> Pay attention to the final values. Most are strings, but some are not - notice that all values do not have double quotes around them. You can access `Int` values with `.intValue`, `Double` values with `.doubleValue`, `String` values with `.stringValue`, etc.
