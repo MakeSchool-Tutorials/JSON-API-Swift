@@ -129,6 +129,6 @@ See the [Postman documentation](https://www.getpostman.com/docs), specifically [
 
 # I'm getting an error about Secure Transport!
 
-> App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.
+`App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.`
 
 If you start your own fresh project instead of using ours, remember that you need to disable Secure Transport if you want to access any `http` endpoints instead of just `https`. See Makestagram again for more information!
