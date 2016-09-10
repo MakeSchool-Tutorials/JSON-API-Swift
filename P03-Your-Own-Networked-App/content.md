@@ -5,7 +5,7 @@ slug: own-networked-app
 
 Now that we've seen how all this code works, let's put your knowledge to the test and create a simple, networked app! This is going to be the most open project you've done so far!
 
-If you like, you can download another copy of the API-Sandbox starter project [here](https://github.com/MakeSchool-Tutorials/JSON-API-Swift-Starter/archive/master.zip) or you can just continue from your current _API-Sandbox_. If you continue, make sure to save the code you completed so you can refer back to it if you get lost!
+If you like, you can download another copy of the API-Sandbox starter project [here](https://github.com/MakeSchool-Tutorials/JSON-API-Swift-Starter/archive/swift3.zip) or you can just continue from your current _API-Sandbox_. If you continue, make sure to save the code you completed so you can refer back to it if you get lost!
 
 > [action]
 > Complete an app from scratch using one of the options listed below. You should spend no more than 3 days on this as part of the App Hackathon. This is your chance to take risks, fail fast, and do something cool before starting on your real app!
@@ -34,15 +34,14 @@ Music is a bit harder to deal with. You have to use the official [iTunes Search 
 >
 ```
 // Modify these to be appropriate for your use case
-let apiToContact = "https://itunes.apple.com/search"
-let parameters = ["term": "jack+johnson", "media": "music"]
+  let apiToContact = "https://itunes.apple.com/search"
+  let parameters: Parameters = ["term": "jack+johnson", "media": "music"]
 >
 // This code will call the iTunes Search API
 // to search for music containing "Jack Johnson"
-Alamofire.request(.GET, apiToContact, parameters: parameters)
-  .validate().responseJSON() { response in
+Alamofire.request(apiToContact, parameters: parameters).validate().responseJSON() { response in
     switch response.result {
-    case .Success:
+    case .success:
         if let value = response.result.value {
             let json = JSON(value)
 >
@@ -52,7 +51,7 @@ Alamofire.request(.GET, apiToContact, parameters: parameters)
 >
 >
         }
-    case .Failure(let error):
+    case .failure(let error):
         print(error)
     }
 }
@@ -92,7 +91,7 @@ If the API you want to use requires authentication, you'll need to do some more 
 
 ## API Keys
 
-Some APIs require an API key to use. Fortunately API keys are easy. They are usually passed as a parameter as described in _iTunes Search API_ above. See the documentation for your API to learn about how to get an API key. Be careful about sending requests too often if your API requires a key -- a lot of free APIs are rate limited! 
+Some APIs require an API key to use. Fortunately API keys are easy. They are usually passed as a parameter as described in _iTunes Search API_ above. See the documentation for your API to learn about how to get an API key. Be careful about sending requests too often if your API requires a key -- a lot of free APIs are rate limited!
 
 ## HTTP Authentication
 
@@ -104,11 +103,11 @@ OAuth is beyond the scope of this tutorial. We recommend you avoid it for this A
 
 # Sending Data to APIs
 
-Everything we've done so far has been `GET` requests. We are `GET`ing data from the API. For more advanced apps you might want to send data back to the API! This sort of request is called a `POST` request and will be documented as such in the API documentation. To send a `POST` request, change `.GET` in your Alamofire call to `.POST`. Sometimes you can leave off the trailing closure so it looks something like this:
+Everything we've done so far has been `GET` requests. We are `GET`ing data from the API. For more advanced apps you might want to send data back to the API! This sort of request is called a `POST` request and will be documented as such in the API documentation. To send a `POST` request, add the `method:` parameter label with a parameter of `.post`. Sometimes you can leave off the trailing closure so it looks something like this:
 
 ```
 let apiToContact = ""https://httpbin.org/post""
-let parameters = [
+let parameters: Parameters = [
     "foo": "bar",
     "baz": ["a", 1],
     "qux": [
@@ -118,7 +117,7 @@ let parameters = [
     ]
 ]
 
-Alamofire.request(.POST, apiToContact, parameters: parameters)
+Alamofire.request(apiToContact, method: .post, parameters: parameters)
 ```
 
 # Testing APIs
